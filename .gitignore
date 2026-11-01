@@ -1,0 +1,42 @@
+# ---- 系统 / 编辑器 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# ---- 构建产物 / 缓存 ----
+build/
+.gradle/
+.kotlin/
+local.properties
+captures/
+*.apk
+*.aab
+*.hprof
+*.bin
+
+# ---- 日志（统一输出到 logs/，见 README「日志约定」）----
+logs/
+*.log
+
+# ---- iOS / Xcode ----
+xcuserdata/
+*.xcuserstate
+**/xcshareddata/WorkspaceSettings.xcsettings
+**/module.xcodeproj/*
+!**/module.xcodeproj/project.pbxproj
+!**/module.xcodeproj/xcshareddata/
+
+# ---- 本地参考代码与测试素材（不入库）----
+# 上游 Cinny Web 客户端的只读参考检出，按 README 说明自行 clone：
+#   git clone https://github.com/cinnyapp/cinny.git cinny
+/cinny/
+# 本地大体积测试媒体（如 adb push 用的音频/视频）
+/resources/
+
+# ---- 其他 ----
+*.log.*

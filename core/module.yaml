@@ -1,0 +1,26 @@
+repositories:
+  # M0 environment mirror. Replace with your corporate mirror or remove to use defaults.
+  - id: mavenCentral
+    url: https://repo.huaweicloud.com/repository/maven
+  - id: mavenGoogle
+    url: https://repo.huaweicloud.com/repository/maven
+
+product:
+  type: kmp/lib
+  platforms: [ android, iosArm64, iosSimulatorArm64 ]
+
+dependencies:
+  - $compose.runtime
+  - $compose.foundation
+  - $compose.ui
+  - $compose.components.resources
+  - $libs.miuix.core
+  - $libs.miuix.ui
+  - $libs.miuix.icons
+
+settings:
+  compose:
+    enabled: true
+    resources:
+      packageName: top.s0cl.cinny.core.resources
+      exposedAccessors: true

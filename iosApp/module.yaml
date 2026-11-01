@@ -1,0 +1,15 @@
+repositories:
+  # M0 environment mirror. Replace with your corporate mirror or remove to use defaults.
+  - id: mavenCentral
+    url: https://repo.huaweicloud.com/repository/maven
+  - id: mavenGoogle
+    url: https://repo.huaweicloud.com/repository/maven
+
+product: ios/app
+
+dependencies:
+  - //shared
+  - $compose.ui
+
+settings:
+  compose: enabled

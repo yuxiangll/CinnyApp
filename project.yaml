@@ -1,0 +1,6 @@
+modules:
+  - androidApp
+  - core
+  - iosApp
+  - matrix
+  - shared

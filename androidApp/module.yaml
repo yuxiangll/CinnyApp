@@ -1,0 +1,30 @@
+repositories:
+  # M0 environment mirror. Replace with your corporate mirror or remove to use defaults.
+  - id: mavenCentral
+    url: https://repo.huaweicloud.com/repository/maven
+  - id: mavenGoogle
+    url: https://repo.huaweicloud.com/repository/maven
+
+product: android/app
+
+dependencies:
+  - //core
+  - //matrix
+  - //shared
+  - $libs.androidx.activity.compose
+  - $libs.kotlinx.coroutines.core
+  - $libs.kotlinx.coroutines.android
+  - $compose.preview
+  - $compose.uiTooling
+
+settings:
+  compose: enabled
+  android:
+    namespace: top.s0cl.cinny
+    applicationId: top.s0cl.cinny
+    versionCode: 1
+    versionName: 0.1.0-m0
+    # miuix-blur 0.9.4 声明了 minSdk 33，低于该值会导致 Manifest 合并失败
+    minSdk: 33
+    # M0 只保留现代设备与模拟器；发布时由 AAB/ABI split 统一管理
+    abiFilters: [ arm64-v8a, x86_64 ]

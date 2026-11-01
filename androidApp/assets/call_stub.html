@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Element Call (stub)</title>
+<style>
+  body { margin:0; font-family: sans-serif; background:#101114; color:#eee; }
+  .top { padding:16px; font-size:14px; color:#9aa0a6; }
+  .stage { height:240px; display:flex; align-items:center; justify-content:center;
+           background:#1b1d22; margin:0 16px; border-radius:16px; font-size:20px; }
+  .bar { display:flex; gap:12px; padding:16px; }
+  button { flex:1; padding:14px; border-radius:12px; border:0; background:#2a2d34; color:#fff; font-size:14px; }
+  .log { padding:0 16px; font-size:12px; color:#8ab4f8; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+  <div class="top">Element Call 能力岛 · 本地 stub（widget API 演示）</div>
+  <div class="stage" id="stage">等待接通…</div>
+  <div class="bar">
+    <button onclick="toggleMute()">静音</button>
+    <button onclick="hangup()">挂断</button>
+  </div>
+  <div class="log" id="log"></div>
+<script>
+  var muted = false;
+  var logEl = document.getElementById('log');
+  function log(text) { logEl.textContent = text + "\n" + logEl.textContent; }
+
+  function toWidget(action, data, requestId) {
+    var msg = { api: 'toWidget', action: action, data: data || {},
+                requestId: requestId || ('req-' + Math.random().toString(36).slice(2)) };
+    window.postMessage(msg, '*');
+  }
+
+  window.addEventListener('message', function (event) {
+    var data = event.data;
+    if (typeof data === 'string') { try { data = JSON.parse(data); } catch (e) { return; } }
+    if (!data || data.api !== 'fromWidget') return;
+    log('fromWidget: ' + data.action + ' ' + JSON.stringify(data.response || {}));
+    if (data.action === 'supported_api_versions') {
+      document.getElementById('stage').textContent = '已与宿主握手';
+    }
+  });
+
+  function toggleMute() {
+    muted = !muted;
+    toWidget('org.matrix.msc3819.mute', { muted: muted });
+    log('toWidget: mute=' + muted);
+  }
+  function hangup() {
+    toWidget('hangup', {});
+    document.getElementById('stage').textContent = '已挂断';
+  }
+
+  toWidget('supported_api_versions', {});
+  log('toWidget: supported_api_versions');
+</script>
+</body>
+</html>

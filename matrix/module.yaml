@@ -1,0 +1,24 @@
+repositories:
+  # M0 environment mirror. Replace with your corporate mirror or remove to use defaults.
+  - id: mavenCentral
+    url: https://repo.huaweicloud.com/repository/maven
+  - id: mavenGoogle
+    url: https://repo.huaweicloud.com/repository/maven
+
+product:
+  type: kmp/lib
+  platforms: [ android, iosArm64, iosSimulatorArm64 ]
+
+dependencies:
+  - //core
+  - $libs.kotlinx.coroutines.core
+
+dependencies@android:
+  # M3: E2EE / 密钥备份 / 验证 / 推送通过 matrix-rust-sdk 实现。
+  # 网络层经由本地中继（LocalRelayServer）走 WebView/Chrome 网络栈，绕过 WAF 的 TLS 指纹拦截。
+  - $libs.matrix.rust.sdk
+
+
+settings:
+  compose:
+    enabled: false
