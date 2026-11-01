@@ -1,0 +1,2 @@
+# CinnyApp
+Cinny mobile platform
