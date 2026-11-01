@@ -22,6 +22,7 @@ captures/
 # ---- 日志（统一输出到 logs/，见 README「日志约定」）----
 logs/
 *.log
+*.log.*
 
 # ---- iOS / Xcode ----
 xcuserdata/
@@ -38,5 +39,5 @@ xcuserdata/
 # 本地大体积测试媒体（如 adb push 用的音频/视频）
 /resources/
 
-# ---- 其他 ----
-*.log.*
+
+
